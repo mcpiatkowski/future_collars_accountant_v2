@@ -94,19 +94,14 @@ def updateAccountAndWarehouse(command, account, warehouse):
         # singleCommand = [saldo, zmiana_na_koncie, komentarz]
         if singleCommand[0] == 'saldo':    
             account.add(singleCommand[1])
-            print('Stan konta: ', account.balance)
         # singleCommand = [zakup, identyfikator, cena_jednostkowa, ilość_sztuk]
         elif singleCommand[0] == 'zakup':
             account.substract(singleCommand[2], singleCommand[3])
             warehouse.addToStock(singleCommand[1], singleCommand[3])
-            print('Stan konta (zakup): ', account.balance)
-            print('Stan magazynu (zakup): ', warehouse.stock)
         # singleCommand = [sprzedaz, identyfikator, cena_jednostkowa, ilość_sztuk]
         elif singleCommand[0] == 'sprzedaz':
             account.add(singleCommand[2], singleCommand[3])
             warehouse.substractFromStock(singleCommand[1], singleCommand[3])
-            print('Stan konta (sprzedaz): ', account.balance)
-            print('Stan magazynu (sprzedaz): ', warehouse.stock)
 
 
 
