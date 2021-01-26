@@ -6,20 +6,26 @@ command.readFromFile()
 command.commandsFromSingleActions()
 account = Account()
 
-for command in command.listOfCommands:
-    # command = [saldo, zmiana_na_koncie, komentarz]
-    if command[0] == 'saldo':    
-        account.add(command[1])
+for singleCommand in command.listOfCommands:
+    # singleCommand = [saldo, zmiana_na_koncie, komentarz]
+    if singleCommand[0] == 'saldo':    
+        account.add(singleCommand[1])
         print('Stan konta: ', account.balance)
-    # command = [zakup, identyfikator, cena_jednostkowa, ilość_sztuk]
-    elif command[0] == 'zakup':
-        account.substract(command[2], command[3])
+    # singleCommand = [zakup, identyfikator, cena_jednostkowa, ilość_sztuk]
+    elif singleCommand[0] == 'zakup':
+        account.substract(singleCommand[2], singleCommand[3])
         print('Stan konta (zakup): ', account.balance)
-    # command = [sprzedaz, identyfikator, cena_jednostkowa, ilość_sztuk]
-    elif command[0] == 'sprzedaz':
-        account.add(command[2], command[3])
+    # singleCommand = [sprzedaz, identyfikator, cena_jednostkowa, ilość_sztuk]
+    elif singleCommand[0] == 'sprzedaz':
+        account.add(singleCommand[2], singleCommand[3])
         print('Stan konta (sprzedaz): ', account.balance)
 
 
 account.add(int(sys.argv[2]))
 print('Stan konta (argv): ', account.balance)
+command.listOfCommands.insert(-1, ['saldo', sys.argv[2], sys.argv[3]])
+print(command.listOfCommands)
+
+for singleCommand in command.listOfCommands:
+    for item in singleCommand:
+        print(item)
