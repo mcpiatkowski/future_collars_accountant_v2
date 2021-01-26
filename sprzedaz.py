@@ -9,8 +9,8 @@ warehouse = Warehouse()
 command.readFromFile()
 command.commandsFromSingleActions()
 
-# sys.argv = [saldo.py, in.txt, howMuch, comment]
-command.listOfCommands.insert(-1, ['saldo', int(sys.argv[2]), sys.argv[3]])
-
+# sys.argv = [sprzedaz.py, in.txt, zakup, name, priceForSingle, howMany]
+command.listOfCommands.insert(-1, ['sprzedaz', sys.argv[3], int(sys.argv[4]), int(sys.argv[5])])
 updateAccountAndWarehouse(command, account, warehouse)
+
 command.printSingleCommandsLikeInputFile()
