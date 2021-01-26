@@ -10,7 +10,14 @@ command.readFromFile()
 command.commandsFromSingleActions()
 
 # sys.argv = [saldo.py, in.txt, howMuch, comment]
-command.listOfCommands.insert(-1, ['saldo', int(sys.argv[2]), sys.argv[3]])
+command.listOfCommands.append(
+    [
+    'saldo', 
+    int(sys.argv[2]), 
+    sys.argv[3]
+    ]
+)
 
 updateAccountAndWarehouse(command, account, warehouse)
-command.printSingleCommandsLikeInputFile()
+
+command.writeSingleCommandsToInputFile()

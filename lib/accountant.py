@@ -15,10 +15,11 @@ class Command:
                 self.listOfSingleActions.append(row)
 
 
-    def printSingleCommandsLikeInputFile(self):
-        for singleCommand in self.listOfCommands:
-            for item in singleCommand:
-                print(item)
+    def writeSingleCommandsToInputFile(self):
+        with open(sys.argv[1], 'w') as output_file:
+            for singleCommand in self.listOfCommands:
+                for item in singleCommand:
+                    output_file.write(str(item) + '\n')
 
 
     def checkForErrorsinCommand(self):
@@ -53,8 +54,6 @@ class Command:
                     int(self.listOfSingleActions[index+3])
                     ]
                 )
-            elif action == 'stop':
-                self.listOfCommands.append(['stop'])
 
 
 class Account:
