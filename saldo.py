@@ -6,18 +6,44 @@ command = Command()
 account = Account()
 warehouse = Warehouse()
 
-command.readFromFile()
-command.commandsFromSingleActions()
-
 # sys.argv = [saldo.py, in.txt, howMuch, comment]
-command.listOfCommands.append(
-    [
-    'saldo', 
-    int(sys.argv[2]), 
-    sys.argv[3]
-    ]
-)
+def errorsInArgv():
+    try:
+        if len(sys.argv) < 3:
+            print('Za mało argumentów!')
+            return True
+    except IndexError:
+        print('Niepoprawnie podane argumenty!')
+        return True
 
-updateAccountAndWarehouse(command, account, warehouse)
 
-command.writeSingleCommandsToInputFile()
+def appendArgvToCommands():
+    command.listOfCommands.append(
+        [
+        'saldo', 
+        int(sys.argv[2]), 
+        sys.argv[3]
+        ]
+    )
+
+
+def main():
+
+    if  not command.readFromFile():
+        return
+
+    command.fromSingleInstructions()
+
+    updateAccountAndWarehouse(command, account, warehouse)
+
+    if errorsInArgv():
+        return
+
+    appendArgvToCommands()
+
+    command.asSingleInstructionsToInputFile()
+
+
+if __name__ == '__main__':
+
+    main()

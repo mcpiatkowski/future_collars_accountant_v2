@@ -9,24 +9,25 @@ class Command:
 
 
     def readFromFile(self):
-        with open(sys.argv[1]) as input_as_list:
-            for row in input_as_list:
-                row = row.strip()
-                self.listOfSingleActions.append(row)
+        try:
+            with open(sys.argv[1]) as input_as_list:
+                for row in input_as_list:
+                    row = row.strip()
+                    self.listOfSingleActions.append(row)
+            return True
+        except FileNotFoundError:
+            print('Nie znaleziono pliku wejściowego!')
+            return False
 
 
-    def writeSingleCommandsToInputFile(self):
+    def asSingleInstructionsToInputFile(self):
         with open(sys.argv[1], 'w') as output_file:
             for singleCommand in self.listOfCommands:
                 for item in singleCommand:
                     output_file.write(str(item) + '\n')
 
 
-    def checkForErrorsinCommand(self):
-        pass
-
-
-    def commandsFromSingleActions(self):
+    def fromSingleInstructions(self):
         for index, action in enumerate(self.listOfSingleActions):
             if action == 'saldo':
                 self.listOfCommands.append(
@@ -63,8 +64,8 @@ class Account:
         self.balance = 0
 
 
-    def add(self, howMuch, howMany = 1):
-        self.balance += howMuch * howMany
+    def add(self, priceForSingle, howMany = 1):
+        self.balance += priceForSingle * howMany
         
 
     def substract(self, priceForSingle, howMany):

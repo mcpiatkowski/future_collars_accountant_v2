@@ -6,9 +6,19 @@ command = Command()
 account = Account()
 warehouse = Warehouse()
 
-command.readFromFile()
-command.commandsFromSingleActions()
 
-updateAccountAndWarehouse(command, account, warehouse)
+def main():
+    
+    if not command.readFromFile():
+        return
+    
+    command.fromSingleInstructions()
 
-print('Stan konta wynosi: ', account.balance)
+    updateAccountAndWarehouse(command, account, warehouse)
+
+    print('Stan konta wynosi: ', account.balance)
+
+
+if __name__ == '__main__':
+
+    main()
