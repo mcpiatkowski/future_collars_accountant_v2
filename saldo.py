@@ -18,32 +18,23 @@ def errorsInArgv():
 
 
 def appendArgvToCommands():
-    command.listOfCommands.append(
-        [
+    command.listOfCommands.append([
         'saldo', 
         int(sys.argv[2]), 
         sys.argv[3]
-        ]
-    )
+    ])
 
 
 def main():
-
     if  not command.readFromFile():
         return
-
     command.fromSingleInstructions()
-
     updateAccountAndWarehouse(command, account, warehouse)
-
     if errorsInArgv():
         return
-
     appendArgvToCommands()
-
     command.asSingleInstructionsToInputFile()
 
 
 if __name__ == '__main__':
-
     main()

@@ -18,6 +18,12 @@ def errorsInArgv():
         if int(sys.argv[4]) <= 0:
             print('Sprzedawana ilość musi być dodatnia!')
             return True
+        if int(sys.argv[3]) * int(sys.argv[4]) > account.balance:
+            print('Za mało środków na koncie!')
+            return True
+        if sys.argv[2] == '':
+            print('Podaj co chcesz kupić!')
+            return True
     except IndexError:
         print('Niepoprawnie podane argumenty!')
         return True

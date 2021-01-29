@@ -21,6 +21,9 @@ def errorsInArgv():
         if int(sys.argv[4]) <= 0:
             print('Sprzedawana ilość musi być dodatnia!')
             return True
+        if int(sys.argv[4]) > warehouse.stock[sys.argv[2]]:
+            print('Nie posiadasz odpowiedniej ilości ', sys.argv[2])
+            return True
     except IndexError:
         print('Niepoprawnie podane argumenty!')
         return True
