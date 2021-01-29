@@ -6,23 +6,30 @@ command = Command()
 account = Account()
 warehouse = Warehouse()
 
-# sys.argv = [saldo.py, in.txt, howMuch, comment]
+# sys.argv = [zakup.py, in.txt, name, priceForSingle, howMany]
 def errorsInArgv():
     try:
-        if len(sys.argv) < 3:
+        if len(sys.argv) < 5:
             print('Za mało argumentów!')
+            return True
+        if int(sys.argv[3]) < 0:
+            print('Cena musi być dodatnia!')
+            return True
+        if int(sys.argv[4]) <= 0:
+            print('Sprzedawana ilość musi być dodatnia!')
             return True
     except IndexError:
         print('Niepoprawnie podane argumenty!')
         return True
 
 
-def appendArgvToCommands():
+def appendArgvToCommands():    
     command.listOfCommands.append(
         [
-        'saldo', 
-        int(sys.argv[2]), 
-        sys.argv[3]
+        'zakup', 
+        sys.argv[2],
+        int(sys.argv[3]), 
+        int(sys.argv[4])
         ]
     )
 
